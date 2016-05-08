@@ -1,5 +1,7 @@
 package br.com.marcelo.swcapi.app
 
+import scala.util.Properties
+
 import com.twitter.finatra.http.routing.HttpRouter
 import com.twitter.finatra.http.HttpServer
 import com.twitter.finagle.http.Request
@@ -9,7 +11,9 @@ object Application extends AppServer
 
 class AppServer extends HttpServer {
 
-  override val defaultFinatraHttpPort: String = ":8080"
+  val port = Properties.envOrElse("PORT", "8080").toInt
+
+  override val defaultFinatraHttpPort: String = ":" + port
 
   override def configureHttp(router: HttpRouter) {
     router.add[HelloController]
