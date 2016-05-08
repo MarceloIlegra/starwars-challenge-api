@@ -19,3 +19,6 @@ project/target/
 .worksheet
 *.iml
 .idea
+
+#Mac
+.DS_Store
