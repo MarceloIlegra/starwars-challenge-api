@@ -1,3 +1,5 @@
+import scala.collection.JavaConverters._
+
 name := "starwars-challenge-api"
 
 version := "1.0"
@@ -12,8 +14,10 @@ resolvers ++= Seq(
 libraryDependencies ++= {
   val finatraV = "2.1.1"
   Seq(
-    "com.twitter.finatra"   %%   "finatra-http"    % finatraV,
-    "com.twitter.finatra"   %%   "finatra-slf4j"   % finatraV,
-    "com.twitter.inject"    %%   "inject-core"     % finatraV
+    "com.twitter.finatra" %% "finatra-http" % finatraV,
+    "com.twitter.finatra" %% "finatra-slf4j" % finatraV,
+    "com.twitter.inject" %% "inject-core" % finatraV
   )
 }
+
+enablePlugins(JavaAppPackaging)
