@@ -1,7 +1,7 @@
 package br.com.starwars.challenge.services
 
 import br.com.starwars.challenge.model.{Person, Travel, Vehicle}
-import br.com.starwars.challenge.restclient.ApiRestClient
+import br.com.starwars.challenge.restclient.{ApiAsyncRestClient, ApiRestClient}
 import br.com.starwars.challenge.services.rescue.{RescueElder, RescueNonElder}
 
 class ApiService {
@@ -10,6 +10,12 @@ class ApiService {
     val vehicle = ApiRestClient.findVehicle(idVehicle)
     val listIdPeople = idPeople.split(",").map(id => id.toInt).toList
     createTravels(ApiRestClient.findPeople(listIdPeople), vehicle)
+  }
+
+  def execAsync(idVehicle: Int, idPeople: String) = {
+    val vehicle = ApiRestClient.findVehicle(idVehicle)
+    val listIdPeople = idPeople.split(",").map(id => id.toInt).toList
+    createTravels(ApiAsyncRestClient.findPeople(listIdPeople), vehicle)
   }
 
   def createTravels(people: List[Person], vehicle: Vehicle):List[Travel] = {

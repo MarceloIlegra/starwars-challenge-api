@@ -30,4 +30,12 @@ class ApiController extends Controller {
     service.exec(idVehicle, people)
   }
 
+  get("/async-rescue") { request: Request =>
+    val idVehicle = request.params.get("idVehicle").get.toInt
+    val people = request.params.get("people").get
+
+    val service = new ApiService
+    service.execAsync(idVehicle, people)
+  }
+
 }
